@@ -1,6 +1,6 @@
 {
-    "name": "PHPCuong/OfflinePayments",
-    "description": "A Magento Plugin v2.0 to show Button Payment SlightPay",
+    "name": "slightpay/payment",
+    "description": "A Magento Plugin to pay with SlightPay",
     "require": {
         "php": ">=7.4"
     }
