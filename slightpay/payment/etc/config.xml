@@ -5,7 +5,7 @@
             <pdqpayment>
                 <active>0</active>
                 <model>slightpay\payment\Model\SlightpayButton</model>
-                <order_status>pending</order_status>
+                <order_status>complete</order_status>
                 <title>SlightPay</title>
                 <allowspecific>0</allowspecific>
                 <group>offline</group>
