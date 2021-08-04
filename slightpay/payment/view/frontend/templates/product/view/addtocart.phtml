@@ -7,8 +7,11 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct();?>
-<?php if (is_numeric($_product->getPrice())): ?>
+<?php if (is_numeric($_product->getPrice()) && $_product->getPrice() >= 300): ?>
     <div style="display: flex;flex-wrap:wrap;align-items:center;justify-content: flex-end;margin-bottom:15px;">o págalo en <div style="color: #1a4bcd;margin: 0 4px;">4 pagos</div> de <b style="display: flex;margin: 0 5px;">$<div id="cuotas-slightpay"></div></b> con <img src="https://www.slightpay.com/static/media/logo-lightpay.29999d55.svg" style="width: 90px;margin: 0 8px;"/><div style="color: #1a4bcd; cursor: pointer; text-decoration: underline #1a4bcd" id="click-header"><a href="#" id="click-header">Conoce más.</a></div></div>
+<?php endif;?>
+<?php if (is_numeric($_product->getPrice()) && $_product->getPrice() < 300): ?>
+    <div style="display: flex;flex-wrap:wrap;align-items:center;justify-content: flex-end;margin-bottom:15px;">págalo con <img src="https://www.slightpay.com/static/media/logo-lightpay.29999d55.svg" style="width: 90px;margin: 0 8px;"/><div style="color: #1a4bcd; cursor: pointer; text-decoration: underline #1a4bcd" id="click-header"><a href="#" id="click-header">Conoce más.</a></div></div>
 <?php endif;?>
 <?php $buttonTitle = __('Add to Cart');?>
 <?php if ($_product->isSaleable()): ?>
