@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="cart.summary">
+            <block class="Slightpay\Payment\Block\Branding\Cart" name="checkout.cart.slightpay" template="Slightpay_Payment::cart.phtml" after="checkout.cart.totals.container" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>
