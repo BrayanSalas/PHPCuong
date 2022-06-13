@@ -1,0 +1,133 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Slightpay\Payment\Block\Branding\Product */
+
+$active = $block->getActive();
+$branding = $block->getBranding();
+
+?>
+
+<?php if ($active && $branding): ?>
+    <?php $_product = $block->getProduct();?>
+    <?php if (is_numeric($_product->getPrice()) && $_product->getPrice() >= 300): ?>
+        <div style="display: flex;flex-wrap:wrap;align-items:center;justify-content: flex-end;margin-bottom:15px;">o págalo en <div style="color: #1a4bcd;margin: 0 4px;">4 pagos</div> de <b style="display: flex;margin: 0 5px;">$<div id="cuotas-slightpay"></div></b> con <img alt="SlightPay" src="https://slightpay.s3.us-west-2.amazonaws.com/logo-slightpay-blanco.svg" style="width: 90px;margin: 0 8px; filter: invert(1);"/><div style="color: #1a4bcd; cursor: pointer; text-decoration: underline #1a4bcd" id="click-header"><a href="#" id="click-header">Conoce más.</a></div></div>
+    <?php endif;?>
+    <?php if (is_numeric($_product->getPrice()) && $_product->getPrice() < 300): ?>
+        <div style="display: flex;flex-wrap:wrap;align-items:center;justify-content: flex-end;margin-bottom:15px;">págalo con <img alt="SlightPay" src="https://slightpay.s3.us-west-2.amazonaws.com/logo-slightpay-blanco.svg" style="width: 90px;margin: 0 8px; filter: invert(1);"/><div style="color: #1a4bcd; cursor: pointer; text-decoration: underline #1a4bcd" id="click-header"><a href="#" id="click-header">Conoce más.</a></div></div>
+    <?php endif;?>
+
+    <style type="text/css">
+        .modal-inner-wrap{
+            width: 520px !important;
+        }
+
+        .img-slightpay {
+            width: 520px;
+        }
+
+        .container-img-slightpay {
+            width: 520px;
+        }
+
+        .modal-header{
+            position: absolute !important;
+            right: 5px!important;
+        }
+
+        .modal-content {
+            padding: 0 !important;
+        }
+
+
+        @media (max-width: 1200px) {
+            .modal-inner-wrap {
+                width: 450px !important;
+            }
+
+            .container-img-slightpay {
+                width: 450px !important;
+            }
+
+            .img-slightpay {
+                width: 450px !important;
+            }
+        }
+
+        @media (max-width: 690px) {
+            .modal-inner-wrap {
+                width: 400px !important;
+                height: 660px !important;
+            }
+
+            .container-img-slightpay {
+                width: 400px !important;
+            }
+
+            .img-slightpay {
+                width: 400px !important;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .modal-inner-wrap {
+                width: 360px !important;
+                height: 592px !important;
+            }
+
+            .container-img-slightpay {
+                width: 360px !important;
+            }
+
+            .img-slightpay {
+                width: 360px !important;
+            }
+
+            .modal-popup.modal-slide {
+                left: 0px !important;
+            }
+        }
+
+    </style>
+
+    <div id="header-modal" class="container-img-slightpay" style="display:none;">
+        <img class="img-slightpay" src="https://slightpay.s3-us-west-2.amazonaws.com/slightpay_branding.png" />
+    </div>
+
+    <script>
+        require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal'
+            ],
+            function(
+                $,
+                modal
+            ) {
+                var options = {
+                    type: 'popup',
+                    responsive: true,
+                    title: '',
+                    buttons: []
+                };
+
+                var popup = modal(options, $('#header-modal'));
+                $("#click-header").on('click',function(){
+                    $("#header-modal").modal("openModal");
+                });
+
+            }
+        );
+
+        <?php
+        echo ("console.log(" . $_product->getPrice() . ")\n");
+        echo ("function calculateAmountPartitions () { \n let amount =" . $_product->getPrice() . " \n document.getElementById('cuotas-slightpay').innerText = (amount/4).toFixed(2); }");
+        ?>
+
+        calculateAmountPartitions()
+    </script>
+
+<?php endif; ?>
